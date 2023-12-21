@@ -4,14 +4,14 @@ import { PrimeNGConfig } from 'primeng/api';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'WineExchange';
+  protected title: string = 'WineExchange';
 
-  constructor(private primengConfig: PrimeNGConfig) {}
+  public constructor(private primengConfig: PrimeNGConfig) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.primengConfig.ripple = true;
   }
 }

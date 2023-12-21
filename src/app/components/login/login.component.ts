@@ -1,24 +1,33 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginForm = this.fb.group({
+  protected loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
-  })
+  });
 
-  constructor(private fb: FormBuilder) {}
+  public constructor(private fb: FormBuilder) {}
 
-  get email() {
+  protected get email(): AbstractControl<string> | null {
     return this.loginForm.get('email');
   }
 
-  get password() {
+  protected get password(): AbstractControl<string> | null {
     return this.loginForm.get('password');
+  }
+
+  protected loginUser(): boolean {
+    return true;
   }
 }
