@@ -20,6 +20,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { WinesComponent } from './components/wines/wines.component';
 import { WineService } from './services/wine.service';
 import { WineCardComponent } from './components/wine-card/wine-card.component';
+import { WineDetailsComponent } from './components/wine-details/wine-details.component';
+import { DataViewModule } from 'primeng/dataview';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { WineCardComponent } from './components/wine-card/wine-card.component';
     NavComponent,
     WinesComponent,
     WineCardComponent,
+    WineDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,9 @@ import { WineCardComponent } from './components/wine-card/wine-card.component';
     ReactiveFormsModule,
     ToastModule,
     HttpClientModule,
-    PasswordModule
+    PasswordModule,
+    DataViewModule,
+    TableModule,
   ],
   providers: [MessageService, WineService],
   bootstrap: [AppComponent],

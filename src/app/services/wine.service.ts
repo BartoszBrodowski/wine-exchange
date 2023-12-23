@@ -6,7 +6,6 @@ import { Wine } from '../interfaces/wine.interface';
   providedIn: 'root'
 })
 export class WineService {
-
   private baseUrl: string = 'http://localhost:8080/wines'
 
   constructor(private http: HttpClient) { }
@@ -14,5 +13,10 @@ export class WineService {
   public getAllWines() {
     const url: string = `${this.baseUrl}/getAllWines`
     return this.http.get<Wine[]>(url)
+  }
+
+  public getWineById(id: string) {
+    const url: string = `${this.baseUrl}/getWineById/${id}`
+    return this.http.get<Wine>(url)
   }
 }
