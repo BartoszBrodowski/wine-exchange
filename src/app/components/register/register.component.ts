@@ -7,8 +7,10 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { finalize } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +33,7 @@ export class RegisterComponent {
       [Validators.required, Validators.pattern(this.passwordPattern)],
     ],
     confirmPassword: ['', Validators.required],
-  });
+  }, { validators: passwordMatchValidator });
 
   public constructor(
     private fb: FormBuilder,
@@ -58,23 +60,27 @@ export class RegisterComponent {
 
   protected submitDetails(): void {
     const postData: User = { ...this.registerForm.value };
+    
     delete postData.confirmPassword;
-    this.authService.register(postData as User).subscribe(
-      () => {
+    this.authService.register(postData as User)
+    .subscribe({
+      next: () => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'User registered successfully',
+          detail: 'User registered successfully!',
         });
-        this.router.navigate(['/login']);
+        this.router.navigateByUrl('/login');
       },
-      () => {
+      error: (err) => {
+        const errorMessage = err.error.message || 'An error occurred';
+        console.log(errorMessage)
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'User registration failed',
+          detail: errorMessage,
         });
       }
-    );
+    })
   }
 }

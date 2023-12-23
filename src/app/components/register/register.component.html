@@ -77,6 +77,9 @@
         <div *ngIf="confirmPassword?.errors?.['required']">
           Confirm password is required
         </div>
+        <div *ngIf="registerForm?.errors?.['passwordMismatch'] && (registerForm.get('password')?.touched || registerForm.get('confirmPassword')?.touched)">
+          Passwords do not match
+        </div>
       </small>
     </div>
     <p-button

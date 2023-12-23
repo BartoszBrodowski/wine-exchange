@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { User } from '../interfaces/user';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +11,8 @@ export class AuthService {
 
   private constructor(private http: HttpClient) {}
 
-  public register(userDetails: User): Observable<object> {
-    return this.http.post(`${this.baseUrl}/api/auth/register`, userDetails);
+  public register(userDetails: User): Observable<HttpResponse<User | string>> {
+    return this.http.post<User | string>(`${this.baseUrl}/users/addUser`, userDetails, { observe: 'response' });
   }
 
   public getUserByEmail(email: string): Observable<User> {
