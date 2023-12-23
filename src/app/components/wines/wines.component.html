@@ -1,6 +1,6 @@
 <div class="flex flex-column justify-items-center align-items-center w-full h-full">
     <h1>Wines list: </h1>
-    <ul>
-        <app-wine-card *ngFor="let wine of wines" [wine]="wine"></app-wine-card>
+    <ul class="grid w-9">
+        <app-wine-card class="col-3" *ngFor="let wine of wines" [wine]="wine"></app-wine-card>
     </ul>
 </div>

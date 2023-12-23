@@ -19,6 +19,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WinesComponent } from './components/wines/wines.component';
 import { WineService } from './services/wine.service';
+import { WineCardComponent } from './components/wine-card/wine-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { WineService } from './services/wine.service';
     HomeButtonComponent,
     NavComponent,
     WinesComponent,
+    WineCardComponent,
   ],
   imports: [
     BrowserModule,
