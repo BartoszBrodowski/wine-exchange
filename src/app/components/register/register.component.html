@@ -80,9 +80,6 @@
           Passwords do not match
         </div>
       </small>
-      <!-- <small class="block p-error" *ngIf="registerForm?.errors?.['passwordMismatch'] && (password?.touched || confirmPassword?.touched)">
-          Passwords do not match
-      </small> -->
     </div>
     <p-button
       label="Sign In"
@@ -91,7 +88,7 @@
       type="submit"
     ></p-button>
     <div class="mt-2">
-      Not a member? <a routerLink="/register">Sign up now</a>
+      Member already? <a routerLink="/login">Sign in</a>
     </div>
   </p-card>
 </form>
