@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PasswordModule } from 'primeng/password';
 import { NavComponent } from './components/nav/nav.component';
+import { WinesComponent } from './components/wines/wines.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NavComponent } from './components/nav/nav.component';
     HomeComponent,
     HomeButtonComponent,
     NavComponent,
+    WinesComponent,
   ],
   imports: [
     BrowserModule,
