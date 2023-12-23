@@ -11,7 +11,6 @@ import { MessageService } from 'primeng/api';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
-import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-register',
