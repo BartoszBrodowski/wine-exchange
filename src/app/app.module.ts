@@ -8,16 +8,17 @@ import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeButtonComponent } from './components/home-button/home-button.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { PasswordModule } from 'primeng/password';
 import { NavComponent } from './components/nav/nav.component';
+import { RegisterComponent } from './components/register/register.component';
 import { WinesComponent } from './components/wines/wines.component';
+import { WineService } from './services/wine.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { WinesComponent } from './components/wines/wines.component';
     HttpClientModule,
     PasswordModule
   ],
-  providers: [MessageService],
+  providers: [MessageService, WineService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
