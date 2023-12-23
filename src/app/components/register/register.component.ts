@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
   AbstractControl,
@@ -7,7 +8,6 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { finalize } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
@@ -63,24 +63,23 @@ export class RegisterComponent {
     
     delete postData.confirmPassword;
     this.authService.register(postData as User)
-    .subscribe({
-      next: () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'User registered successfully!',
-        });
-        this.router.navigateByUrl('/login');
-      },
-      error: (err) => {
-        const errorMessage = err.error.message || 'An error occurred';
-        console.log(errorMessage)
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: errorMessage,
-        });
-      }
-    })
+      .subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'User registered successfully!',
+          });
+          this.router.navigateByUrl('/login');
+        },
+        error: (err: HttpErrorResponse) => {
+          const errorMessage: string = err.error.message || 'An error occurred';
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: errorMessage,
+          });
+        }
+      });
   }
 }
