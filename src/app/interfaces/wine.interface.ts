@@ -7,7 +7,7 @@ export interface Wine {
     year: number;
     date: Date;
     price: number;
-    isAvailable: boolean;
+    available: boolean;
     winery: Winery;
     wineComposition: WineComposition;
 }
