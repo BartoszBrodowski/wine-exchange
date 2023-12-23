@@ -41,11 +41,13 @@
     </div>
     <div class="field">
       <label for="password">Password</label>
-      <input
+      <p-password
+        [toggleMask]="true"
         type="password"
-        pInputText
         formControlName="password"
-        class="w-full"
+        styleClass="w-full p-password p-component p-inputwrapper p-input-icon-right"
+        [inputStyle]="{ width: '100%' }"
+        [feedback]="false"
         name="password"
         placeholder="Enter password"
       />
@@ -68,19 +70,19 @@
         placeholder="Enter confirm password"
       />
       <small
-        *ngIf="
-          confirmPassword?.invalid &&
-          (confirmPassword?.dirty || confirmPassword?.touched)
-        "
+        *ngIf="(confirmPassword?.touched || password?.touched)"
         class="block p-error"
       >
         <div *ngIf="confirmPassword?.errors?.['required']">
           Confirm password is required
         </div>
-        <div *ngIf="registerForm?.errors?.['passwordMismatch'] && (registerForm.get('password')?.touched || registerForm.get('confirmPassword')?.touched)">
+        <div *ngIf="registerForm?.errors?.['passwordMismatch']">
           Passwords do not match
         </div>
       </small>
+      <!-- <small class="block p-error" *ngIf="registerForm?.errors?.['passwordMismatch'] && (password?.touched || confirmPassword?.touched)">
+          Passwords do not match
+      </small> -->
     </div>
     <p-button
       label="Sign In"
