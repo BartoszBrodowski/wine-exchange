@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
@@ -23,6 +23,9 @@ import { WineCardComponent } from './components/wine-card/wine-card.component';
 import { WineDetailsComponent } from './components/wine-details/wine-details.component';
 import { DataViewModule } from 'primeng/dataview';
 import { TableModule } from 'primeng/table';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -49,8 +52,11 @@ import { TableModule } from 'primeng/table';
     PasswordModule,
     DataViewModule,
     TableModule,
+    ConfirmPopupModule,
+    ConfirmDialogModule,
+    DialogModule
   ],
-  providers: [MessageService, WineService],
+  providers: [MessageService, WineService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
