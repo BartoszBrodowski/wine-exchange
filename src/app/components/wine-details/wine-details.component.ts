@@ -10,10 +10,10 @@ import { WineService } from 'src/app/features/services/wine.service';
   styleUrls: ['./wine-details.component.scss']
 })
 export class WineDetailsComponent implements OnInit {
-  protected wineId!: string;
+  protected wineId: string = '';
   protected wine: Wine | undefined;
   
-  constructor(
+  public constructor(
     private route: ActivatedRoute, 
     private wineService: WineService, 
     private confirmationService: ConfirmationService, 
@@ -21,28 +21,28 @@ export class WineDetailsComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.wineId = this.route.snapshot.paramMap.get('id')!;
+  public ngOnInit(): void {
+    this.wineId = this.route.snapshot.paramMap.get('id') as string;
     this.wineService.getWineById(this.wineId).subscribe({
       next: (wine: Wine) => {
         this.wine = wine;
-      }, error: (err) => {
-        console.log(err)
+      }, error: () => {
+        this.router.navigateByUrl('/not-found');
       }
     });
   }
 
-  addToCart() {
+  protected addToCart(): void {
     this.confirmationService.confirm({
-        header: 'Add item to your cart?',
-        message: 'Please confirm to proceed.',
-        accept: () => {
-            this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Item added to cart', life: 3000 });
-        },
+      header: 'Add item to your cart?',
+      message: 'Please confirm to proceed.',
+      accept: () => {
+        this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Item added to cart', life: 3000 });
+      },
     });
   }
 
-  delete(event: Event) {
+  protected delete(event: Event): void {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Do you want to delete this wine?',
@@ -53,20 +53,20 @@ export class WineDetailsComponent implements OnInit {
       acceptIcon:"none",
       rejectIcon:"none",
 
-      accept: () => {
+      accept: (): void => {
         this.wineService.deleteWine(this.wineId)
-        .subscribe({
-          next: (value: string) => {
-            this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Wine deleted' });
-            this.router.navigateByUrl('/wines');
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        });
+          .subscribe({
+            next: (): void => {
+              this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Wine deleted' });
+              this.router.navigateByUrl('/wines');
+            },
+            error: (): void => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete wine' });
+            }
+          });
       },
-      reject: () => {
-          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+      reject: (): void => {
+        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
       }
     });
   }

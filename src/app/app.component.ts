@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +11,9 @@ export class AppComponent implements OnInit {
   protected isLoginPage: boolean = false;
   protected isRegisterPage: boolean = false;
 
-  public constructor(private primengConfig: PrimeNGConfig, private router: Router) {}
+  public constructor(private primengConfig: PrimeNGConfig) {}
 
   public ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.isLoginPage = event.url === '/login';
-      this.isRegisterPage = event.url === '/register';
-    });
   }
 }
