@@ -26,6 +26,7 @@ import { TableModule } from 'primeng/table';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     WinesComponent,
     WineCardComponent,
     WineDetailsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

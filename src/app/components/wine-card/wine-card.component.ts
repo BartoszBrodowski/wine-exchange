@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Wine } from 'src/app/interfaces/wine.interface';
+import { Wine } from 'src/app/shared/interfaces/wine.interface';
 
 @Component({
   selector: 'app-wine-card',

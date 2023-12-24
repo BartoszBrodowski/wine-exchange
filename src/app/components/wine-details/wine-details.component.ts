@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Wine } from 'src/app/interfaces/wine.interface';
+import { Wine } from 'src/app/shared/interfaces/wine.interface';
 import { WineService } from 'src/app/features/services/wine.service';
 
 @Component({
@@ -57,7 +57,6 @@ export class WineDetailsComponent implements OnInit {
         this.wineService.deleteWine(this.wineId)
         .subscribe({
           next: (value: string) => {
-            console.log('Delete wine: ', value)
             this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Wine deleted' });
             this.router.navigateByUrl('/wines');
           },

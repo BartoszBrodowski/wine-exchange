@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { User } from 'src/app/interfaces/user.interface';
+import { User } from 'src/app/shared/interfaces/user.interface';
 import { AuthService } from 'src/app/features/services/auth.service';
 import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
 

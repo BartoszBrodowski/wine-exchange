@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Wine } from '../../interfaces/wine.interface';
+import { Wine } from '../../shared/interfaces/wine.interface';
 
 @Injectable({
   providedIn: 'root'
