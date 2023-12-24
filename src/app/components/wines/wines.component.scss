@@ -4,27 +4,7 @@
     justify-content: center;
 }
 
-.grid-item {
-    width: 30% !important;
-    flex: 0 0 auto;
-    flex-wrap: wrap;
+:host ::ng-deep .p-dataview-list, 
+:host ::ng-deep .p-dataview-grid { 
+    width: 80%;
 }
-
-// .p-dataview-content > div {
-//     display: flex;
-//     flex-direction: column;
-//     flex-wrap: wrap;
-//     justify-content: center;
-// }
-
-// ng-template {
-//     color: red;
-// }
-
-// .grid-item {
-//     width: 30%;
-// }
-
-// .items-list {
-//     width: 90%;
-// }

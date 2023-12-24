@@ -8,22 +8,7 @@ import { WineService } from 'src/app/services/wine.service';
   styleUrls: ['./wines.component.scss']
 })
 export class WinesComponent  {
-  public wines: any[] = [{
-    name: 'Wine 1',
-    price: 100,
-    year: 2010,
-  },
-  {
-    name: 'Wine 1',
-    price: 100,
-    year: 2010,
-  },
-  {
-    name: 'Wine 1',
-    price: 100,
-    year: 2010,
-  }
-];
+  public wines: Wine[] = []
   
 constructor(private wineService: WineService) {}
 
