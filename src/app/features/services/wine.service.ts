@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Wine } from '../interfaces/wine.interface';
+import { Wine } from '../../interfaces/wine.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,10 @@ export class WineService {
   public getWineById(id: string) {
     const url: string = `${this.baseUrl}/getWineById/${id}`
     return this.http.get<Wine>(url)
+  }
+
+  public deleteWine(id: string) {
+    const url: string = `${this.baseUrl}/deleteWine/${id}`
+    return this.http.delete<string>(url)
   }
 }

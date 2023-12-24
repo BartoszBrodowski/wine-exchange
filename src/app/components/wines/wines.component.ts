@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Wine } from 'src/app/interfaces/wine.interface';
-import { WineService } from 'src/app/services/wine.service';
+import { WineService } from 'src/app/features/services/wine.service';
 
 @Component({
   selector: 'app-wines',

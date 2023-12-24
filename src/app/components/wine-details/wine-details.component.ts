@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Wine } from 'src/app/interfaces/wine.interface';
-import { WineService } from 'src/app/services/wine.service';
+import { WineService } from 'src/app/features/services/wine.service';
 
 @Component({
   selector: 'app-wine-details',
@@ -17,7 +17,8 @@ export class WineDetailsComponent implements OnInit {
     private route: ActivatedRoute, 
     private wineService: WineService, 
     private confirmationService: ConfirmationService, 
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +54,17 @@ export class WineDetailsComponent implements OnInit {
       rejectIcon:"none",
 
       accept: () => {
-          this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Wine deleted' });
+        this.wineService.deleteWine(this.wineId)
+        .subscribe({
+          next: (value: string) => {
+            console.log('Delete wine: ', value)
+            this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Wine deleted' });
+            this.router.navigateByUrl('/wines');
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
       },
       reject: () => {
           this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });

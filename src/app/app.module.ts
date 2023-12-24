@@ -18,7 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WinesComponent } from './components/wines/wines.component';
-import { WineService } from './services/wine.service';
+import { WineService } from './features/services/wine.service';
 import { WineCardComponent } from './components/wine-card/wine-card.component';
 import { WineDetailsComponent } from './components/wine-details/wine-details.component';
 import { DataViewModule } from 'primeng/dataview';

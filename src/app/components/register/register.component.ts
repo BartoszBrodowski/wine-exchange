@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { User } from 'src/app/interfaces/user.interface';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/features/services/auth.service';
 import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
 
 @Component({
