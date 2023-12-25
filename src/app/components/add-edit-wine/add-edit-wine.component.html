@@ -1,0 +1,36 @@
+<p-dialog [header]="isAdd ? 'Add Wine' : 'Edit Wine'" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+    [draggable]="false" [resizable]="false" (onHide)="closeModal()">
+    <form [formGroup]="wineForm">
+        <div class="field">
+            <label class="block">Name</label>
+            <input type="text" pInputText formControlName="name">
+        </div>
+        <div class="flex gap-4" formGroupName="years">
+            <div class="field">
+                <label class="block">Harvest Year</label>
+                <p-calendar appendTo="body" type="text" formControlName="harvest" view="year" dateFormat="yy"></p-calendar>
+            </div>
+            <div class="field">
+                <label class="block">Bottling Year</label>
+                <p-calendar appendTo="body" type="text" formControlName="bottling" view="year" dateFormat="yy"></p-calendar>
+            </div>
+        </div>
+        <div class="field">
+            <label class="block">Price</label>
+            <p-inputNumber placeholder="$0.00" currency="USD" [showButtons]="true" mode="currency" currency="USD" formControlName="price"></p-inputNumber>
+        </div>
+        <div formArrayName="tags">
+            <div *ngFor="let tag of tags.controls; let i = index" [formGroupName]="i">
+                <div class="field">
+                    <label class="block">Tag {{ i + 1 }}</label>
+                    <input type="text" pInputText formControlName="name" [value]="tag">
+                </div>
+            </div>
+            <button type="button" pButton (click)="addTag()">Add Tag</button>
+        </div>
+    </form>
+        <ng-template pTemplate="footer">
+        <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button (click)="addWine($event)" [label]="isAdd ? 'Add' : 'Confirm'" styleClass="p-button-text"></p-button>
+        </ng-template>
+</p-dialog>

@@ -1,7 +1,7 @@
 <a [routerLink]="'/wines/' + wine.id">
     <p-card>
         <h1 class="text-xl">{{wine.name}}</h1>
-        <p>{{wine.year}}</p>
+        <p>{{wine.years.harvest}}</p>
         <p class="text-green-500">${{wine.price}}</p>
         <div [ngClass]="{'text-green-800': wine.available, 'text-red-700': !wine.available}">
             {{ wine.available ? 'Available' : 'Sold Out' }}

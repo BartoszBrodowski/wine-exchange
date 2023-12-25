@@ -12,6 +12,7 @@ import { WineService } from 'src/app/features/services/wine.service';
 export class WineDetailsComponent implements OnInit {
   protected wineId: string = '';
   protected wine: Wine | undefined;
+  protected displayAddModal: boolean = false;
   
   public constructor(
     private route: ActivatedRoute, 
@@ -40,6 +41,19 @@ export class WineDetailsComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Item added to cart', life: 3000 });
       },
     });
+  }
+
+  public updateWine(wine: Wine): void {
+    this.wine = wine;
+    console.log('updateWine ran')
+  }
+
+  protected showAddModal(): void {
+    this.displayAddModal = true;
+  }
+
+  protected hideAddModal(isClosed: boolean): void {
+    this.displayAddModal = !isClosed;
   }
 
   protected delete(event: Event): void {

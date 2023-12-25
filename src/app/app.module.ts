@@ -7,8 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DataViewModule } from 'primeng/dataview';
+import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,17 +21,14 @@ import { HomeButtonComponent } from './components/home-button/home-button.compon
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RegisterComponent } from './components/register/register.component';
-import { WinesComponent } from './components/wines/wines.component';
-import { WineService } from './features/services/wine.service';
 import { WineCardComponent } from './components/wine-card/wine-card.component';
 import { WineDetailsComponent } from './components/wine-details/wine-details.component';
-import { DataViewModule } from 'primeng/dataview';
-import { TableModule } from 'primeng/table';
-import { ConfirmPopupModule } from 'primeng/confirmpopup';
-import { DialogModule } from 'primeng/dialog';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { WinesComponent } from './components/wines/wines.component';
+import { WineService } from './features/services/wine.service';
+import { AddEditWineModule } from './components/add-edit-wine/add-edit-wine.module';
+import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     WineCardComponent,
     WineDetailsComponent,
     PageNotFoundComponent,
+    WineTagPipe,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     TableModule,
     ConfirmPopupModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    AddEditWineModule,
   ],
   providers: [MessageService, WineService, ConfirmationService],
   bootstrap: [AppComponent],

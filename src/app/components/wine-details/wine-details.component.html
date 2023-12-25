@@ -5,8 +5,14 @@
             <div class="flex flex-column gap-4 w-4">
                 <p-card class="flex flex-column">
                     <div>
-                        <h1 class="text-xl">{{wine?.name}}</h1>
-                        <p>{{wine?.year}}</p>
+                        <h1 class="text-xxl">{{wine?.name}}</h1>
+                        <h2 class="text-lg">{{wine?.id}}</h2>
+                        <p>Harvest: {{wine?.years?.harvest}}</p>
+                        <p>Bottling: {{wine?.years?.bottling}}</p>
+                        <div>
+                            Tags: 
+                            <span *ngFor="let tag of wine?.tags">{{ tag | wineTag }}</span>
+                        </div>
                         <p class="text-green-500">${{wine?.price}}</p>
                         <div [ngClass]="{'text-green-800': wine?.available, 'text-red-700': !wine?.available}">
                             {{ wine?.available ? 'Available' : 'Sold Out' }}
@@ -21,6 +27,7 @@
                             </p-confirmDialog>
                             <p-button (click)="addToCart()" icon="pi pi-cart-plus" label="Add to cart" styleClass="p-button-success"></p-button>
                             <p-button (click)="delete($event)" icon="pi pi-times" label="Delete" styleClass="p-button-danger"></p-button>
+                            <p-button (click)="showAddModal()" icon="pi pi-pencil" label="Edit" styleClass="p-button-warning"></p-button>
                             <p-toast></p-toast>
                         </div>
                     </div>
@@ -29,3 +36,5 @@
         </div>
     </div>
 </div>
+
+<app-add-edit-wine [displayAddModal]="displayAddModal" (clickClose)="hideAddModal($event)" [wineId]="wine?.id" [isAdd]="false" (updateWineComponent)="updateWine($event)"></app-add-edit-wine>

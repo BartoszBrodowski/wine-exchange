@@ -1,13 +1,19 @@
+import { Tag } from "./tag.interface";
 import { WineComposition } from "./wine-composition.interface";
 import { Winery } from "./winery.interface";
 
 export interface Wine {
     id: string;
     name: string;
-    year: number;
-    date: Date;
+    years: {
+        harvest: string;
+        bottling: string;
+    };
     price: number;
+    tags: Tag[];
     available: boolean;
+    volume: number;
+    alcohol: number;
     winery: Winery;
     wineComposition: WineComposition;
 }

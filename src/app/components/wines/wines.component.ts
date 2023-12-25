@@ -9,6 +9,7 @@ import { Wine } from 'src/app/shared/interfaces/wine.interface';
 })
 export class WinesComponent implements OnInit {
   public wines: Wine[] = [];
+  protected displayAddModal: boolean = false;
   
   public constructor(private wineService: WineService) {}
 
@@ -19,5 +20,18 @@ export class WinesComponent implements OnInit {
         this.wines = wines;
       }
     });
+  }
+
+  public toggleAddModal(): void {
+    this.displayAddModal = !this.displayAddModal;
+  }
+
+  public hideAddModal(): void {
+    this.displayAddModal = false;
+  }
+
+  public updateWineList(wine: Wine): void {
+    this.wines = [...this.wines, wine];
+    console.log(this.wines)
   }
 }
