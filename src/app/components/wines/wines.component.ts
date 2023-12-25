@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { DropdownChangeEvent } from 'primeng/dropdown';
 import { WineService } from 'src/app/features/services/wine.service';
+import { SortOption } from 'src/app/shared/interfaces/sort-option.interface';
 import { Wine } from 'src/app/shared/interfaces/wine.interface';
 
 @Component({
@@ -10,7 +13,23 @@ import { Wine } from 'src/app/shared/interfaces/wine.interface';
 export class WinesComponent implements OnInit {
   public wines: Wine[] = [];
   protected displayAddModal: boolean = false;
-  
+
+  protected sortOptions: SortOption[] = [
+    { label: 'Name (A-Z)', value: 'name' },
+    { label: 'Name (Z-A)', value: '!name' },
+    { label: 'Cheapest', value: 'price' },
+    { label: 'New Arrivals', value: 'createdAt' },
+    { label: 'Most Expensive', value: '!price' },
+    { label: 'Bottling', value: 'years.bottling' },
+    { label: 'Harvest', value: 'years.harvest' },
+  ]
+  protected sortOrder!: number;
+  protected sortField!: string;
+
+  protected filterText: string = '';
+  // protected onlyAvailable: boolean | null = null;
+  protected formGroup!: FormGroup;
+
   public constructor(private wineService: WineService) {}
 
 
@@ -20,6 +39,27 @@ export class WinesComponent implements OnInit {
         this.wines = wines;
       }
     });
+    this.formGroup = new FormGroup({
+      checked: new FormControl<boolean | null>(null)
+  });
+  }
+
+  get filteredWines(): any[] {  
+    console.log(this.formGroup.value.checked)
+    return this.wines.filter(wine => wine.name.toLowerCase().includes(this.filterText.toLowerCase()))
+    .filter(wine => this.formGroup.value.checked === null || wine.available === this.formGroup.value.checked);
+  }
+
+  public onSortChange(event: DropdownChangeEvent) {
+    const value = event.value;
+
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    } else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
   }
 
   public toggleAddModal(): void {
@@ -31,7 +71,7 @@ export class WinesComponent implements OnInit {
   }
 
   public updateWineList(wine: Wine): void {
-    this.wines = [...this.wines, wine];
+    this.wines = [wine, ...this.wines];
     console.log(this.wines)
   }
 }

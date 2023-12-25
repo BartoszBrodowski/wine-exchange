@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -29,6 +29,9 @@ import { WinesComponent } from './components/wines/wines.component';
 import { WineService } from './features/services/wine.service';
 import { AddEditWineModule } from './components/add-edit-wine/add-edit-wine.module';
 import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
+import { DropdownModule } from 'primeng/dropdown';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { WineAvailabilityPipe } from './shared/pipes/wine-availability.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
     WineDetailsComponent,
     PageNotFoundComponent,
     WineTagPipe,
+    WineAvailabilityPipe,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,9 @@ import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
     ConfirmDialogModule,
     DialogModule,
     AddEditWineModule,
+    DropdownModule,
+    FormsModule,
+    TriStateCheckboxModule
   ],
   providers: [MessageService, WineService, ConfirmationService],
   bootstrap: [AppComponent],

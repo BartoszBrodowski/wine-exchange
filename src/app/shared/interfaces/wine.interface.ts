@@ -12,6 +12,7 @@ export interface Wine {
     price: number;
     tags: Tag[];
     available: boolean;
+    createdAt: Date;
     volume: number;
     alcohol: number;
     winery: Winery;
