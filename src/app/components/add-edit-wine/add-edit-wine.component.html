@@ -1,4 +1,4 @@
-<p-dialog [header]="isAdd ? 'Add Wine' : 'Edit Wine'" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+<p-dialog [header]="isAdd ? 'Add Wine' : 'Edit Wine'" [(visible)]="displayAddModal" [modal]="true" 
     [draggable]="false" [resizable]="false" (onHide)="closeModal()">
     <form [formGroup]="wineForm">
         <div class="field">
@@ -30,7 +30,7 @@
         </div>
     </form>
         <ng-template pTemplate="footer">
-        <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
-        <p-button (click)="addWine($event)" [label]="isAdd ? 'Add' : 'Confirm'" styleClass="p-button-text"></p-button>
+            <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+            <p-button (click)="addWine($event)" [label]="isAdd ? 'Add' : 'Confirm'" styleClass="p-button-text"></p-button>
         </ng-template>
 </p-dialog>

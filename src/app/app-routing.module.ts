@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'wines', component: WinesComponent },
   { path: 'wines/:id', component: WineDetailsComponent, canActivate: [wineNotFoundGuard] },
-  { path: 'user/:id', component: UserProfileComponent },
+  { path: 'user/:id', component: UserProfileComponent, canActivate: [userNotFoundGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'not-found', component: PageNotFoundComponent }
 ];

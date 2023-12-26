@@ -8,3 +8,20 @@
     color: white;
     padding: 5px 10px;
 }
+
+h1 {
+    margin: 0;
+}
+
+:host ::ng-deep .p-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+}
+
+:host ::ng-deep .p-element {
+    width: 100%;
+}

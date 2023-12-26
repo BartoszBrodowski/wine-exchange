@@ -1,14 +1,14 @@
 <div>
     <div class="flex justify-items-center align-items-center w-full">
         <div class="flex gap-8 justify-content-center align-items-center w-full h-full">
-            <img class="w-1" src="../../../assets/images/WinePlaceholder.png" alt="Wine image">
-            <div class="flex flex-column gap-4 w-4">
-                <p-card class="flex flex-column">
+            <div class="flex flex-column justify-content-center align-items-center gap-4 w-full">
+                <p-card class="flex justify-content-center container w-5">
+                    <img class="w-3" src="../../../assets/images/WinePlaceholder.png" alt="Wine image">
                     <div>
                         <h1 class="text-xxl">{{wine?.name}}</h1>
                         <h2 class="text-lg">{{wine?.id}}</h2>
-                        <p>Harvest: {{wine?.years?.harvest}}</p>
-                        <p>Bottling: {{wine?.years?.bottling}}</p>
+                        <div>Harvest: {{wine?.years?.harvest}}</div>
+                        <div>Bottling: {{wine?.years?.bottling}}</div>
                         <div>
                             Tags: 
                             <span *ngFor="let tag of wine?.tags">{{ tag | wineTag }}</span>
@@ -19,12 +19,7 @@
                         </div>
                     </div>
                     <div class="flex gap-4 w-full justify-content-start mt-4">
-                        <div class="card flex justify-content-start gap-2">
-                            <p-confirmDialog>
-                                <ng-template pTemplate="acception">
-                                    <p-button styleClass="p-button-success" label="Acception"></p-button>
-                                </ng-template>
-                            </p-confirmDialog>
+                        <div class="card flex justify-content-start gap-2 flex-wrap w-full">
                             <p-button (click)="addToCart()" icon="pi pi-cart-plus" label="Add to cart" styleClass="p-button-success"></p-button>
                             <p-button (click)="delete($event)" icon="pi pi-times" label="Delete" styleClass="p-button-danger"></p-button>
                             <p-button (click)="showAddModal()" icon="pi pi-pencil" label="Edit" styleClass="p-button-warning"></p-button>
@@ -37,4 +32,9 @@
     </div>
 </div>
 
+<p-confirmDialog>
+    <ng-template pTemplate="acception">
+        <p-button styleClass="p-button-success" label="Acception"></p-button>
+    </ng-template>
+</p-confirmDialog>
 <app-add-edit-wine [displayAddModal]="displayAddModal" (clickClose)="hideAddModal($event)" [wineId]="wine?.id" [isAdd]="false" (updateWineComponent)="updateWine($event)"></app-add-edit-wine>

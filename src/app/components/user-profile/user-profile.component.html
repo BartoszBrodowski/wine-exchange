@@ -1,7 +1,10 @@
 <form [formGroup]="userForm" (ngSubmit)="submitDetails($event)" class="flex flex-column justify-content-center align-items-center">
     <h2>User data</h2>
-    <div class="field">Your id: {{userId}}</div>
-    <div header="User data" [style]="{ width: '360px' }">
+    <div class="flex flex-column justify-content-center align-items-center field">
+        <span class="font-medium">Your id:</span>
+        <span>{{userId}}</span>
+    </div>
+    <div header="User data" [style]="{ width: '340px' }">
         <div class="field">
         <label for="username">Username:</label>
         <input

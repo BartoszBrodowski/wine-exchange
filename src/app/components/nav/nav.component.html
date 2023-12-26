@@ -1,8 +1,20 @@
 <nav class="flex justify-items-between align-items-center py-2 px-5 fixed top-0 left-0 w-full blur-background container">
-    <a routerLink="/" class="pi pi-home icon mr-auto box"></a>
+    <p-button (click)="sidebarVisible = true" icon="pi pi-align-justify"></p-button>
+    <a routerLink="/" class="pi pi-home icon mr-auto box nav-icon"></a>
     <div class="flex flex-column justify-items-center align-items-center box">
-        <img [style]="{ width: '30px' }" src="../../../assets/images/Logo.png" alt="Brand logo">
-        <span class="">Wine Exchange</span>
+        <img class="nav-icon" [style]="{ width: '30px' }" src="../../../assets/images/Logo.png" alt="Brand logo">
+        <span class="nav-icon">Wine Exchange</span>
     </div>
-    <a routerLink="login" class="box">Sign Up</a>
+    <a routerLink="login" class="box nav-icon">Sign Up</a>
 </nav>
+
+<p-sidebar [(visible)]="sidebarVisible">
+    <h3>Sidebar</h3>
+    <ng-template pTemplate="content">
+        <div class="flex flex-column gap-2">
+            <a routerLink="/"><div class="pi pi-home w-full">Home</div></a>
+            <a routerLink="/wines"><div class="pi pi-shopping-cart w-full">Wines</div></a>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">Footer Content</ng-template>
+</p-sidebar>

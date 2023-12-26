@@ -9,6 +9,11 @@
     width: 80%;
 }
 
+.sort-filters {
+    align-items: center;
+}
+
+
 .grid-item {
     width: 32%;
     margin: 8px auto;
@@ -16,4 +21,45 @@
 
 .mt-12 {
     margin-top: 8rem;
+}
+
+.availability-filter {
+    flex-direction: column;
+}
+
+
+@media screen and (max-width: 1268px) {
+    :host ::ng-deep .p-dataview-list, 
+    :host ::ng-deep .p-dataview-grid { 
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .grid-item {
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .availability-filter {
+        flex-direction: row;
+    }
+    :host ::ng-deep .p-dataview-list, 
+    :host ::ng-deep .p-dataview-grid { 
+        align-items: start;
+        width: 100%;
+    }
+
+    .sort-filters {
+        flex-direction: column;
+        justify-content: between;
+        align-items: start;
+        gap: 8px;
+    }
+
+    .grid-item {
+        width: 100%;
+    }
+
 }

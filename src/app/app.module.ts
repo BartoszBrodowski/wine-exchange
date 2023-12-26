@@ -33,6 +33,7 @@ import { WinesComponent } from './components/wines/wines.component';
 import { WineService } from './features/services/wine.service';
 import { WineAvailabilityPipe } from './shared/pipes/wine-availability.pipe';
 import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
     DropdownModule,
     FormsModule,
     TriStateCheckboxModule,
+    SidebarModule
   ],
   providers: [MessageService, WineService, ConfirmationService],
   bootstrap: [AppComponent],
