@@ -1,0 +1,78 @@
+<form [formGroup]="userForm" (ngSubmit)="submitDetails($event)" class="flex flex-column justify-content-center align-items-center">
+    <h2>User data</h2>
+    <div class="field">Your id: {{userId}}</div>
+    <div header="User data" [style]="{ width: '360px' }">
+        <div class="field">
+        <label for="username">Username:</label>
+        <input
+            type="text"
+            pInputText
+            formControlName="username"
+            class="w-full"
+            name="username"
+            [value]="username"
+            placeholder="Enter name"
+        />
+        <small
+            *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+            class="block p-error"
+        >
+            <div *ngIf="username?.errors?.['required']">Name is required.</div>
+            <div *ngIf="username?.errors?.['pattern']">
+            Can only contain letters,numbers and underscores (3-30 character)
+            </div>
+        </small>
+        </div>
+        <div class="field">
+        <label for="email">Email</label>
+        <input
+            type="text"
+            pInputText
+            formControlName="email"
+            class="w-full"
+            name="email"
+            [value]="email"
+            placeholder="Enter email"
+        />
+        <small
+            *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+            class="block p-error"
+        >
+            <div *ngIf="email?.errors?.['required']">Email is required</div>
+            <div *ngIf="email?.errors?.['email']">Email has to be valid</div>
+        </small>
+        </div>
+        <div class="field">
+        <label for="password">Password</label>
+        <p-password
+            [toggleMask]="true"
+            type="password"
+            formControlName="password"
+            styleClass="w-full p-password p-component p-inputwrapper p-input-icon-right"
+            [inputStyle]="{ width: '100%' }"
+            [feedback]="false"
+            name="password"
+            placeholder="Enter password"
+        />
+        <small
+            *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+            class="block p-error"
+        >
+            <div *ngIf="password?.errors?.['required']">Password is required</div>
+            <div *ngIf="password?.errors?.['pattern']">Invalid password (8 characters long, 1 capital, 1 small, 1 special character)</div>
+        </small>
+        </div>
+        <p-button
+            label="Update data"
+            styleClass="w-full"
+            [disabled]="userForm.invalid"
+            (click)="submitDetails($event)"
+        ></p-button>
+    </div>
+</form>
+
+<p-confirmDialog>
+    <ng-template pTemplate="acception">
+        <p-button styleClass="p-button-success" label="Acception"></p-button>
+    </ng-template>
+</p-confirmDialog>

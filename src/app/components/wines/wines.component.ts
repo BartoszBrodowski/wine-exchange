@@ -27,7 +27,6 @@ export class WinesComponent implements OnInit {
   protected sortField!: string;
 
   protected filterText: string = '';
-  // protected onlyAvailable: boolean | null = null;
   protected formGroup!: FormGroup;
 
   public constructor(private wineService: WineService) {}
@@ -36,7 +35,7 @@ export class WinesComponent implements OnInit {
   public ngOnInit(): void {
     this.wineService.getAllWines().subscribe({
       next: (wines: Wine[]) => {
-        this.wines = wines;
+        this.wines = wines
       }
     });
     this.formGroup = new FormGroup({
@@ -45,9 +44,9 @@ export class WinesComponent implements OnInit {
   }
 
   get filteredWines(): any[] {  
-    console.log(this.formGroup.value.checked)
-    return this.wines.filter(wine => wine.name.toLowerCase().includes(this.filterText.toLowerCase()))
-    .filter(wine => this.formGroup.value.checked === null || wine.available === this.formGroup.value.checked);
+    return this.wines
+      .filter(wine => wine.name.toLowerCase().includes(this.filterText.toLowerCase()))
+      .filter(wine => this.formGroup.value.checked === null || wine.available === this.formGroup.value.checked);
   }
 
   public onSortChange(event: DropdownChangeEvent) {

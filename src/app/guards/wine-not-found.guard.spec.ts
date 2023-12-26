@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { notFoundGuard } from './not-found.guard';
+import { wineNotFoundGuard } from './wine-not-found.guard';
 
 describe('notFoundGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => notFoundGuard(...guardParameters));
+      TestBed.runInInjectionContext(() => wineNotFoundGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

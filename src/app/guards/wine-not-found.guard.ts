@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, UrlTree } from '@angular
 import { Observable, catchError, map } from 'rxjs';
 import { WineService } from '../features/services/wine.service';
 
-export const notFoundGuard: CanActivateFn = (route: ActivatedRouteSnapshot): Observable<UrlTree | boolean> => {
+export const wineNotFoundGuard: CanActivateFn = (route: ActivatedRouteSnapshot): Observable<UrlTree | boolean> => {
   const id: string = route.params['id'];
   const wineService: WineService = inject(WineService);
   const router: Router = inject(Router);

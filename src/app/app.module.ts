@@ -11,27 +11,28 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AddEditWineModule } from './components/add-edit-wine/add-edit-wine.module';
 import { HomeButtonComponent } from './components/home-button/home-button.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { WineCardComponent } from './components/wine-card/wine-card.component';
 import { WineDetailsComponent } from './components/wine-details/wine-details.component';
 import { WinesComponent } from './components/wines/wines.component';
 import { WineService } from './features/services/wine.service';
-import { AddEditWineModule } from './components/add-edit-wine/add-edit-wine.module';
-import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
-import { DropdownModule } from 'primeng/dropdown';
-import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { WineAvailabilityPipe } from './shared/pipes/wine-availability.pipe';
+import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { WineAvailabilityPipe } from './shared/pipes/wine-availability.pipe';
     PageNotFoundComponent,
     WineTagPipe,
     WineAvailabilityPipe,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,7 @@ import { WineAvailabilityPipe } from './shared/pipes/wine-availability.pipe';
     AddEditWineModule,
     DropdownModule,
     FormsModule,
-    TriStateCheckboxModule
+    TriStateCheckboxModule,
   ],
   providers: [MessageService, WineService, ConfirmationService],
   bootstrap: [AppComponent],

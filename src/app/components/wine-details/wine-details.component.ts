@@ -45,7 +45,6 @@ export class WineDetailsComponent implements OnInit {
 
   public updateWine(wine: Wine): void {
     this.wine = wine;
-    console.log('updateWine ran')
   }
 
   protected showAddModal(): void {
