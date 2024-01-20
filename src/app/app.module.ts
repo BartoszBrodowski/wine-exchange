@@ -14,6 +14,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
@@ -33,7 +34,6 @@ import { WinesComponent } from './components/wines/wines.component';
 import { WineService } from './features/services/wine.service';
 import { WineAvailabilityPipe } from './shared/pipes/wine-availability.pipe';
 import { WineTagPipe } from './shared/pipes/wine-tag.pipe';
-import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [

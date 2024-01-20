@@ -4,20 +4,38 @@
         <div class="field">
             <label class="block">Name</label>
             <input type="text" pInputText formControlName="name">
-        </div>
-        <div class="flex gap-4" formGroupName="years">
-            <div class="field">
-                <label class="block">Harvest Year</label>
-                <p-calendar appendTo="body" type="text" formControlName="harvest" view="year" dateFormat="yy"></p-calendar>
+            <div class="block p-error" *ngIf="name?.errors?.['required'] && name?.invalid && (name?.dirty || name?.touched)">Name is required.</div>
+            <div class="block p-error" *ngIf="name?.errors?.['pattern'] && name?.invalid && (name?.dirty || name?.touched)">
+            Can only contain letters,numbers and spaces (3-20 character)
             </div>
-            <div class="field">
-                <label class="block">Bottling Year</label>
-                <p-calendar appendTo="body" type="text" formControlName="bottling" view="year" dateFormat="yy"></p-calendar>
+        </div>
+        <div class="flex flex-column mb-4" formGroupName="years">
+            <div class="flex gap-4">
+                <div class="field">
+                    <label class="block">Harvest Year</label>
+                    <p-calendar appendTo="body" type="text" formControlName="harvest" view="year" dateFormat="yy"></p-calendar>
+                </div>
+                <div class="field">
+                    <label class="block">Bottling Year</label>
+                    <p-calendar appendTo="body" type="text" formControlName="bottling" view="year" dateFormat="yy"></p-calendar>
+                </div>
+            </div>
+            <div class="block p-error" *ngIf="years?.errors?.['wineYearMismatch'] && years?.invalid && (years?.dirty || years?.touched)">
+                Harvest year must be before or equal to bottling year.
             </div>
         </div>
         <div class="field">
             <label class="block">Price</label>
-            <p-inputNumber placeholder="$0.00" currency="USD" [showButtons]="true" mode="currency" currency="USD" formControlName="price"></p-inputNumber>
+            <input
+                type="number"
+                pInputText
+                formControlName="price"
+                class="w-full"
+                name="price"
+                placeholder="Enter price"
+                />
+            <div class="block p-error" *ngIf="price?.errors?.['required'] && price?.invalid && (price?.dirty || price?.touched)">Price required</div>
+            <div class="block p-error" *ngIf="price?.errors?.['pattern'] && price?.invalid && (price?.dirty || price?.touched)">Invalid price format</div>
         </div>
         <div formArrayName="tags">
             <div *ngFor="let tag of tags.controls; let i = index" [formGroupName]="i">
@@ -31,6 +49,6 @@
     </form>
         <ng-template pTemplate="footer">
             <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
-            <p-button (click)="addWine($event)" [label]="isAdd ? 'Add' : 'Confirm'" styleClass="p-button-text"></p-button>
+            <p-button [disabled]="wineForm.invalid" (click)="addWine($event)" [label]="isAdd ? 'Add' : 'Confirm'" styleClass="p-button-text"></p-button>
         </ng-template>
 </p-dialog>

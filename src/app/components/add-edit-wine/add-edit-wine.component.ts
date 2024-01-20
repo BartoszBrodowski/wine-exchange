@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, Output, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { WineService } from 'src/app/features/services/wine.service';
 import { TagsForm } from 'src/app/models/tags-form.model';
 import { Tag } from 'src/app/shared/interfaces/tag.interface';
 import { Wine } from 'src/app/shared/interfaces/wine.interface';
 import { v4 as uuidv4 } from 'uuid';
+import { wineYearValidator } from '../../shared/wine-year-validator.directive';
 
 @Component({
   selector: 'app-add-edit-wine',
@@ -13,6 +14,9 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./add-edit-wine.component.scss']
 })
 export class AddEditWineComponent implements OnChanges, OnInit {
+  private namePattern: string = '^[a-zA-Z0-9 ]{3,20}$';
+  private pricePattern: string = '^[1-9][0-9]{0,3}(\\.[0-9]{1,2})?$';
+
   @Input() displayAddModal: boolean = true;
   @Input() wineId: string | undefined = '';
   @Input() isAdd: boolean = false;
@@ -21,6 +25,16 @@ export class AddEditWineComponent implements OnChanges, OnInit {
   @Output() updateWineList: EventEmitter<Wine> = new EventEmitter<Wine>();
   private wine: Wine | undefined = undefined;
  
+  public wineForm: FormGroup = this.fb.group({
+    name: ['', [Validators.required, Validators.pattern(this.namePattern)]],
+    years: this.fb.group({
+      harvest: ['', Validators.required],
+      bottling: ['', Validators.required]
+    }, { validators: wineYearValidator }),
+    price: ['', [Validators.required, Validators.pattern(this.pricePattern)]],
+    tags: this.fb.array<Tag>([])
+  })
+
   public ngOnInit(): void {
     if (this.wineId) {
       this.wineService.getWineById(this.wineId)
@@ -35,23 +49,33 @@ export class AddEditWineComponent implements OnChanges, OnInit {
     }
   }
 
-  public wineForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
-    years: this.fb.group({
-      harvest: ['', Validators.required],
-      bottling: ['', Validators.required]
-    }),
-    price: ['', Validators.required],
-    tags: this.fb.array<Tag>([])
-  })
-
   public constructor(
     private fb: FormBuilder,
     private wineService: WineService, 
     private messageService: MessageService,
     private confirmationService: ConfirmationService) { }
 
-  get tags(): FormArray<FormGroup<TagsForm>> {
+  protected get name(): AbstractControl<string> | null {
+    return this.wineForm.get('name');
+  }
+
+  protected get years(): FormGroup {
+    return this.wineForm.controls['years'] as FormGroup;
+  }
+
+  protected get harvest(): AbstractControl<string> | null {
+    return this.wineForm.get('years.harvest');
+  }
+
+  protected get bottling(): AbstractControl<string> | null {
+    return this.wineForm.get('years.bottling');
+  }
+
+  protected get price(): AbstractControl<string> | null {
+    return this.wineForm.get('price');
+  }
+
+  protected get tags(): FormArray<FormGroup<TagsForm>> {
     return this.wineForm.controls['tags'] as FormArray<FormGroup<TagsForm>>;
   }
 
@@ -117,7 +141,7 @@ export class AddEditWineComponent implements OnChanges, OnInit {
               this.updateWineList.emit(response.wine);
               this.closeModal();
             },
-            error: (error): void => {
+            error: (): void => {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: `Failed to ${action} wine.` });
             }
           });
