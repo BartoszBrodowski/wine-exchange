@@ -7,4 +7,15 @@
         flex-direction: column;
         gap: 8px;
     }
+    :host ::ng-deep .p-dialog {
+        max-width: 100%;
+    }
+}
+
+:host ::ng-deep .p-dialog {
+    max-width: 50%;
+}
+
+:host ::ng-deep .p-button {
+    width: 120px;
 }

@@ -25,3 +25,9 @@ h1 {
 :host ::ng-deep .p-element {
     width: 100%;
 }
+
+:host ::ng-deep .p-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

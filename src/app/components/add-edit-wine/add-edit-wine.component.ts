@@ -117,8 +117,8 @@ export class AddEditWineComponent implements OnChanges, OnInit {
               this.updateWineList.emit(response.wine);
               this.closeModal();
             },
-            error: (): void => {
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: `Failed to ${action} wine` });
+            error: (error): void => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: `Failed to ${action} wine.` });
             }
           });
       },

@@ -1,4 +1,4 @@
-<p-dialog [header]="isAdd ? 'Add Wine' : 'Edit Wine'" [(visible)]="displayAddModal" [modal]="true" 
+<p-dialog class="w-6" [header]="isAdd ? 'Add Wine' : 'Edit Wine'" [(visible)]="displayAddModal" [modal]="true" 
     [draggable]="false" [resizable]="false" (onHide)="closeModal()">
     <form [formGroup]="wineForm">
         <div class="field">

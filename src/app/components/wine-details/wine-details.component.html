@@ -37,4 +37,5 @@
         <p-button styleClass="p-button-success" label="Acception"></p-button>
     </ng-template>
 </p-confirmDialog>
-<app-add-edit-wine [displayAddModal]="displayAddModal" (clickClose)="hideAddModal($event)" [wineId]="wine?.id" [isAdd]="false" (updateWineComponent)="updateWine($event)"></app-add-edit-wine>
+
+<app-add-edit-wine class="w-6" [displayAddModal]="displayAddModal" (clickClose)="hideAddModal($event)" [wineId]="wine?.id" [isAdd]="false" (updateWineComponent)="updateWine($event)"></app-add-edit-wine>

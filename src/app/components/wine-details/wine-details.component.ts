@@ -78,9 +78,10 @@ export class WineDetailsComponent implements OnInit {
             }
           });
       },
-      reject: (): void => {
-        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
-      }
+      // reject: (): void => {
+      //   console.log('Wine deleted')
+      //   this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+      // }
     });
   }
 }
