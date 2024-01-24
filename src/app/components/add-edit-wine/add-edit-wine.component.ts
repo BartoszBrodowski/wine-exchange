@@ -84,7 +84,20 @@ export class AddEditWineComponent implements OnChanges, OnInit {
       this.wineService.getWineById(this.wineId)
         .subscribe({
           next: (wine): void => {
-            this.wineForm.patchValue(wine);
+            // Adding wine properties one by one to fix tag not showing issue
+            this.name?.setValue(wine.name);
+            this.harvest?.setValue(wine.years.harvest);
+            this.bottling?.setValue(wine.years.bottling);
+            this.price?.setValue(String(wine.price));
+            // Add tags
+            const tagsArray = this.wineForm.get('tags') as FormArray;
+            tagsArray.clear();
+            wine.tags.forEach((tag: Tag) => {
+              tagsArray.push(this.fb.group({
+                id: tag.id,
+                name: tag.name
+              }));
+            });
           },
           error: (): void => {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to get wine' });

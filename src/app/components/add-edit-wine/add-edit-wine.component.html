@@ -41,7 +41,7 @@
             <div *ngFor="let tag of tags.controls; let i = index" [formGroupName]="i">
                 <div class="field">
                     <label class="block">Tag {{ i + 1 }}</label>
-                    <input type="text" pInputText formControlName="name" [value]="tag">
+                    <input type="text" pInputText formControlName="name" [value]="tag.get('name')?.value">
                 </div>
             </div>
             <button type="button" pButton (click)="addTag()">Add Tag</button>
